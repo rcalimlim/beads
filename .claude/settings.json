@@ -1,18 +1,40 @@
 {
   "hooks": {
-    "PreToolUse": [
+    "PreCompact": [
       {
-        "matcher": "Bash",
         "hooks": [
           {
-            "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-gh-watch.sh"
+            "command": "bd prime",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-gh-watch.sh",
+            "type": "command"
           },
           {
-            "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-interactive-cmds.sh"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-interactive-cmds.sh",
+            "type": "command"
           }
-        ]
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bd prime",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ]
   }
