@@ -57,6 +57,7 @@ type Storage interface {
 	GetDependents(ctx context.Context, issueID string) ([]*types.Issue, error)
 	GetDependenciesWithMetadata(ctx context.Context, issueID string) ([]*types.IssueWithDependencyMetadata, error)
 	GetDependentsWithMetadata(ctx context.Context, issueID string) ([]*types.IssueWithDependencyMetadata, error)
+	GetDependencyRecords(ctx context.Context, issueID string) ([]*types.Dependency, error)
 	GetDependencyTree(ctx context.Context, issueID string, maxDepth int, showAllPaths bool, reverse bool) ([]*types.TreeNode, error)
 
 	// Labels

@@ -250,6 +250,14 @@ func (s *InstrumentedStorage) GetDependentsWithMetadata(ctx context.Context, iss
 	return v, err
 }
 
+func (s *InstrumentedStorage) GetDependencyRecords(ctx context.Context, issueID string) ([]*types.Dependency, error) {
+	attrs := []attribute.KeyValue{attribute.String("bd.issue.id", issueID)}
+	ctx, span, t := s.op(ctx, "GetDependencyRecords", attrs...)
+	v, err := s.inner.GetDependencyRecords(ctx, issueID)
+	s.done(ctx, span, t, err, attrs...)
+	return v, err
+}
+
 func (s *InstrumentedStorage) GetDependencyTree(ctx context.Context, issueID string, maxDepth int, showAllPaths bool, reverse bool) ([]*types.TreeNode, error) {
 	attrs := []attribute.KeyValue{
 		attribute.String("bd.issue.id", issueID),
